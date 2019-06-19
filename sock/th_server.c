@@ -25,7 +25,7 @@ void *th_func(void *arg){
 
 	data[0] = atoi(&buf[0]);
 	oper = buf[1];
-	data[1] = atoi(&buf[1]);
+	data[1] = atoi(&buf[2]);
 
 	if(oper == '+')
 		res = data[0] + data[1];
@@ -35,38 +35,7 @@ void *th_func(void *arg){
 		res = data[0] * data[1];
 	else if(oper = '/')
 		res = data[0] / data[1];
-	return res;
 }
-
-
-int main(void){
-	int s, s2, len;
-	 unsigned int t;
-  struct sockaddr_un local, remote;
-		         char str[100];
-			      double res;
-			       pthread_t p_thread;
-			   
-				         int thr_id;
-			         int status;
-				 
-					       if((s = socket(AF_UNIX, SOCK_STREAM, 0)) == -1){
-						            perror("socket");
-						             exit(1);
-							      }
-				  
-					        local.sun_family = AF_UNIX;
-				        strcpy(local.sun_path, SOCK_PATH);
-				         // 소켓이 이미 있을 경우 bind가 되지 않으므로 삭제 시켜준다
-						     unlink(local.sun_path);
-					      len = strlen(local.sun_path) + sizeof(local.sun_family);
-					  
-						       // 서버프로세스와 소켓을 연결
-						        if(bind(s, (struct sockaddr *)&local, len) == -1){
-								          perror("bind");
-
-
-
 	
 int main(void) {
 	int s, s2, len;
@@ -74,6 +43,10 @@ int main(void) {
 	unsigned int t;
 	struct sockaddr_un local, remote;
 	char str[100];
+	pthread_t pth;
+
+	int thid;
+	int status;
 
 	if( (s = socket(AF_UNIX, SOCK_STREAM, 0) ) == -1 ) {
 		printf("socket");
@@ -115,7 +88,17 @@ int main(void) {
 				done = 1;
 			}
 			if (!done) {
-				m.type = 2;
+				thid = pthread_create(&pth, NULL, th_func, (void *)str);
+				pthread_join(pth, (void **)&status);
+
+				if(thid < 0) {
+					perror("thread");
+					done = 1;
+				}
+				sprintf(str, "%d", res);
+				if(send(s2, str, n, 0) <0){
+					perror("send");
+					done = 1;
 				}
 			}
 		} while(!done);

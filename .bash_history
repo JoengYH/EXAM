@@ -1,59 +1,3 @@
-claer
-clear
-ls
-rm envir-tset
-mv envir-test
-msn mv
-man mv
-mv envir-test /work/190404
-cd work
-cd 190404
-vi segment-test
-vi segment-test.c
-gcc -o seg-test segment-test.c
-./seg-test
-vi segment-test.c
-./seg-test
-clear
-./seg-test
-ls
-cd ..
-ls
-cd ..
-ls
-mv envir-test ./work/190404/envir-test
-ls
-mv envir-test.c ./work/190404/envir-test.c
-ls
-cd work
-ls
-cd 190404
-ls
-vi envir-test.c
-ls
-ls -l
-rm segment-test
-ls
-ls -l
-clear
-la
-mv seg-test segment-test
-ls
-clear
-ls -a
-cd ..
-lsa
-ls
-ls -l
-cd
-;s
-ls
-cd ..
-ls
-cd ..
-ls
-ls -l
-cd home
 ls -l
 ls -l -a
 clear
@@ -1998,3 +1942,59 @@ vi msgq-reca.c
 gcc -o msgq-rec msgq-rec.c
 ./msgq-rec
 ./msgq-rec 3
+ls
+cd work/
+cd test
+ls
+tmux
+ls
+cd work/
+ls
+cd 190530
+ls
+vi thread-test
+vi thread-test.c
+ls
+vi th-server.c
+rm th-server.c
+ls
+cd sock/
+ls
+cd ..
+aq
+cd mq/
+ls
+cd ..
+ls
+cd sock/
+ls
+vi server-ex.c
+ls
+cp server-ex.c th_server.c
+vi th_server.c
+gcc th_server o-o th_server.c -pthread
+gcc th_server -o th_server.c -pthread
+gcc -o th_server -pthread th_server.c
+gcc th_server -o th_server.c -pthread
+vi th_server.c
+gcc th_server -o th_server.c -pthread
+gcc -o th_server -pthread th_server.c
+vi th_server.c
+gcc -o th_server -pthread th_server.c
+vi th_server.c
+gcc -o th_server -pthread th_server.c
+ls
+cd work
+ls
+cd ..
+cd /
+ls
+cd home/s1521197/final/
+ls
+cd thread/
+ls
+cd ..
+cd~
+cd ~
+tmux
+./client-ex 
